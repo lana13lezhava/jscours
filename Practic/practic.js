@@ -97,4 +97,71 @@ switchBtn.addEventListener('click', function () {
         video.play()
     }
 })
+// dataset 
+const about = document.querySelector('.about')
+const tabBtn = document.querySelectorAll('.tab-btn')
+const content = document.querySelectorAll('.content')
+about.addEventListener('click', function (e) {
+    const id = e.target.dataset.id
+    if (id) {
+        tabBtn.forEach(function (btn) {
+            btn.classList.remove('active')
+            e.target.classList.add('active')
+        })
+        content.forEach(function (article) {
+            article.classList.remove('active')
+        })
+        const element = document.getElementById(id)
+        element.classList.add('active')
+    }
 
+})
+
+// deadline-format
+
+// const deadlineFormat = document.querySelectorAll('.deadline-format h4')
+// const text = document.querySelector('.text')
+
+// let futureDate = new Date(2025, 3, 12, 15, 44, 0)
+// const year = futureDate.getFullYear()
+// const hours = futureDate.getHours()
+// const minutes = futureDate.getUTCMinutes()
+// const secs = futureDate.getSeconds()
+// text.textContent = `${year}, ${hours},${minutes},${secs}`
+
+
+// slider
+
+const slides = document.querySelectorAll('.slide')
+const next = document.querySelector('.next')
+const prev = document.querySelector('.prev')
+
+slides.forEach(function (slide, index) {
+    slide.style.left = `${index * 100}%`
+})
+
+
+let counter = 0
+next.addEventListener('click', function () {
+    counter++
+    caruse()
+})
+prev.addEventListener('click', function () {
+    counter--
+    caruse()
+})
+function caruse() {
+    if (counter < slides.length - 1) {
+        next.style.display = 'block'
+    } else {
+        next.style.display = 'none'
+    }
+    if (counter > 0) {
+        prev.style.display = 'block'
+    } else {
+        prev.style.display = 'none'
+    }
+    slides.forEach(function (slide) {
+        slide.style.transform = `translateX(-${counter * 100}%)`
+    })
+}
